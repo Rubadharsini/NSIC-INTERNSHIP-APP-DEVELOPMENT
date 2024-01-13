@@ -1,0 +1,101 @@
+package com.example.spotify;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    int[] ImageArray = {R.drawable.dandellions,R.drawable.perfectpicture,R.drawable.coldpicture,R.drawable.walkthrufirepicture,R.drawable.thisiswhatyoucameforpicture};
+    int[] MusicArray = {R.raw.dandelions,R.raw.perfect,R.raw.cold,R.raw.walkthrufire,R.raw.thisiswhatyoucamefor};
+    int count = 0;
+    MediaPlayer mediaPlayer;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView t1 = (TextView) findViewById(R.id.Text1);
+        TextView t2 = (TextView) findViewById(R.id.Text2);
+        Button b1 = (Button) findViewById(R.id.B1);
+        Button b2 = (Button) findViewById(R.id.B2);
+        Button b3 = (Button) findViewById(R.id.B3);
+        ImageView image1 = (ImageView) findViewById(R.id.Image1);
+        ImageView image2 = (ImageView) findViewById(R.id.Image2);
+        ImageView image3 = (ImageView) findViewById(R.id.Image3);
+        ImageView image4 = (ImageView) findViewById(R.id.Image4);
+        Bitmap[] BitMapArray = new Bitmap[ImageArray.length];
+        for(int i=0;i<ImageArray.length;i++)
+        {
+            BitMapArray[i] = BitmapFactory.decodeResource(getResources(),ImageArray[i]);
+        }
+        image1.setImageBitmap(BitMapArray[count]);
+        image2.setImageResource(R.drawable.playbutton);
+        image3.setImageResource(R.drawable.nextbutton);
+        image4.setImageResource(R.drawable.previousbutton);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mediaPlayer == null)
+                {
+                    mediaPlayer = MediaPlayer.create(MainActivity.this,R.raw.dandelions);
+                    mediaPlayer.start();
+                    image1.setImageBitmap(BitMapArray[count]);
+                    image2.setImageResource(R.drawable.pausebutton);
+                }
+                else
+                {
+                    if(mediaPlayer.isPlaying())
+                    {
+                        image2.setImageResource(R.drawable.playbutton);
+                        mediaPlayer.pause();
+                    }
+                    else
+                    {
+                        image2.setImageResource(R.drawable.pausebutton);
+                        mediaPlayer.start();
+                    }
+                }
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                if(count==MusicArray.length)
+                {
+                    count=0;
+                }
+                image1.setImageBitmap(BitMapArray[count]);
+                mediaPlayer.release();
+                mediaPlayer = MediaPlayer.create(MainActivity.this,MusicArray
+                        [count]);
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count--;
+                if(count<0)
+                {
+                    count = (MusicArray.length)-1;
+                    image1.setImageBitmap(BitMapArray[count]);
+                    mediaPlayer.release();
+                    mediaPlayer = MediaPlayer.create(MainActivity.this,MusicArray[count]);
+                }
+                else
+                {
+                    image1.setImageBitmap(BitMapArray[count]);
+                    mediaPlayer.release();
+                    mediaPlayer = MediaPlayer.create(MainActivity.this,MusicArray[count]);
+                }
+            }
+        });
+    }
+}

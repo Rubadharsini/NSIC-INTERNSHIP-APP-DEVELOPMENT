@@ -1,0 +1,93 @@
+?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+xmlns:android="http://schemas.android.com/apk/res/android"
+
+xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+
+android:layout_width="match parent
+
+android:layout_height="match_parent"
+
+tools:context="MainActivity">
+
+<GridView
+
+11
+
+android:id="8+1d/gv"
+
+35
+
+31
+
+20
+
+30
+
+android:horizontalSpacing="5dp"
+
+21
+
+22
+
+21:
+
+android:layout_width="300dp"
+
+android:layout_height="495dp"
+
+android:layout_marginStart="800" android:layout marginTop="800"
+
+android:layout_marginEnd="8dp
+
+android:layout_marginBottom="80p
+
+android:columnWidth="1000p
+
+android:numColumns aute fit
+
+android:stretchMode="columnWidth"
+
+android:verticalSpacing="5dp"
+
+app:layout_constraintBottom_toBottomOf="parent"
+
+app:layout_constraintEnd_toEndof="parent" app:layout_constraintstart_tostartüf="parent"
+
+app:layout_constraintTop_toTopOf="parent"
+
+app:layout_constraintVertical_bias=0.0" />
+
+
+<TextView
+
+android:id="@+10/image"
+
+android:layout_width="wrap_content"
+
+android:layout_height="wrap_content" android:layout_marginStart=159dp"
+
+android:layout_marginTop="490p
+
+android:layout_marginEnd="1780p
+
+android:layout_marginBottom="200p
+
+android:text="IMAGES"
+android:textColor=#F50057
+
+android:textSize="20sp
+
+app:layout constraintBottom toTopOf="@+id/gv
+
+app:layout_constraintEnd_toEndof "parent"
+
+app:layout constraintstart_tostartöf="parent"
+
+app:layout constraint Top_toTopOf="parent"
+
+tools:ignore "MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
